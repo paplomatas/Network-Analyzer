@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: network_analyzer
+Version: 0.1.0
+Summary: A network packet analyzer for monitoring, visualization, and security analysis
+Author: Network Security Team
+Keywords: network,security,packet analysis,visualization
+Requires-Python: >=3.7
+Requires-Dist: scapy>=2.4.5
+Requires-Dist: matplotlib>=3.5.1
+Requires-Dist: pandas>=1.4.1
+Requires-Dist: numpy>=1.22.2
+Requires-Dist: plotly>=5.6.0
+Requires-Dist: networkx>=2.8.0
+Requires-Dist: dash>=2.3.0
+Requires-Dist: flask>=2.0.3
+Requires-Dist: sqlalchemy>=1.4.31
+Requires-Dist: scikit-learn>=1.0.2
+Requires-Dist: tqdm>=4.62.3
+Requires-Dist: pyshark
+Requires-Dist: pyqt5
+Requires-Dist: psycopg2
+Requires-Dist: pyyaml
+Requires-Dist: wheel
+Requires-Dist: setuptools
+Dynamic: author
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

@@ -1,0 +1,2 @@
+[console_scripts]
+network-analyzer = network_analyzer.main:main

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f7f7f7; color: #333; }
+        h1, h2, h3 { border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        table, th, td { border: 1px solid #aaa; }
+        th, td { padding: 8px; text-align: left; }
+        img.chart { max-width: 100%; height: auto; border: 1px solid #aaa; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p><strong>Generated:</strong> {{ timestamp }}</p>
+
+    <h2>Summary</h2>
+    <ul>
+        <li><strong>Total Packets:</strong> {{ summary.total_packets }}</li>
+        <li><strong>Top Source IPs:</strong> {{ summary.top_source_ips|join(", ") }}</li>
+        <li><strong>Top Destination IPs:</strong> {{ summary.top_destination_ips|join(", ") }}</li>
+        <li><strong>Security Alerts:</strong> {{ summary.security_alerts }}</li>
+        <li><strong>Anomaly Alerts:</strong> {{ summary.anomaly_alerts }}</li>
+    </ul>
+
+    <h2>Protocol Distribution</h2>
+    {% if charts.protocol_distribution %}
+    <img src="data:image/png;base64,{{ charts.protocol_distribution }}" class="chart">
+    {% endif %}
+
+    <h2>Traffic Over Time</h2>
+    {% if charts.traffic_over_time %}
+    <img src="data:image/png;base64,{{ charts.traffic_over_time }}" class="chart">
+    {% endif %}
+
+    <h2>Recent Security Alerts</h2>
+    {% if security_data.recent_alerts %}
+    <table>
+        <tr><th>Timestamp</th><th>Type</th><th>Details</th><th>Severity</th></tr>
+        {% for alert in security_data.recent_alerts %}
+        <tr>
+            <td>{{ alert.timestamp }}</td>
+            <td>{{ alert.type }}</td>
+            <td>{{ alert.details }}</td>
+            <td>{{ alert.severity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No recent alerts.</p>
+    {% endif %}
+
+    <h2>Recent Anomalies</h2>
+    {% if anomaly_data.recent_anomalies %}
+    <table>
+        <tr><th>Timestamp</th><th>Issues</th></tr>
+        {% for anomaly in anomaly_data.recent_anomalies %}
+        <tr>
+            <td>{{ anomaly.timestamp }}</td>
+            <td>
+                <ul>
+                    {% for issue in anomaly.issues %}
+                    <li>{{ issue.details }} (Severity: {{ issue.severity }})</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No recent anomalies.</p>
+    {% endif %}
+</body>
+</html>
