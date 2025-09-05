@@ -16,7 +16,7 @@ A comprehensive tool for capturing, analyzing, and visualizing network traffic p
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/network-analyzer.git
+git clone https://github.com/paplomatas/network-analyzer.git
 cd network-analyzer
 
 # Install the package
